@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">Register</div>
     <div class="panel-body">
         <form class="form-horizontal" method="POST" action="{{ route('register') }}">
