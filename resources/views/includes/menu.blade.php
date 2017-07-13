@@ -4,14 +4,23 @@
     <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
         	@if (auth()->check())
-	        	<li><a href="#">Dashboard</a></li>
-	        	<li><a href="#">Ver incidencias</a></li>
-	        	<li><a href="#">Reportar incidencias</a></li>
-	        	<li><a href="#">Administración</a></li>
+	        	<li><a href="/home">Dashboard</a></li>
+	        	<li><a href="/ver">Ver incidencias</a></li>
+	        	<li><a href="/reportar">Reportar incidencias</a></li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      Administración <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/usuarios">Usuarios</a></li>
+                      <li><a href="#">Proyectos</a></li>
+                      <li><a href="#">Configuración</a></li>
+                    </ul>
+              </li>
         	@else
-	        	<li><a href="#">Bienvenido</a></li>
-	        	<li><a href="#">instrucciones</a></li>
-	        	<li><a href="#">Créditos</a></li>
+	        	<li><a href="/">Bienvenido</a></li>
+	        	<li><a href="/instrucciones">instrucciones</a></li>
+	        	<li><a href="/acerca-de">Créditos</a></li>
         	@endif
         </ul>
     </div>
