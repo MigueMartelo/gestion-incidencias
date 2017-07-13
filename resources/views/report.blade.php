@@ -5,7 +5,8 @@
     <div class="panel-heading">Report</div>
 
     <div class="panel-body">
-        <form action="">
+        <form action="" method="POST">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="category_id">Categoría</label>
                 <select name="category_id" class="form-control">
