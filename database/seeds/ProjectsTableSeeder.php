@@ -14,12 +14,12 @@ class ProjectsTableSeeder extends Seeder
     {
         Project::create([
         	'name' => 'Proyecto A',
-        	'description' => 'El proyecto A consiste en desarrollar un sito web moderno.'
+        	'description' => 'El proyecto A consiste en desarrollar un sito web moderno.',
         ]);
 
         Project::create([
         	'name' => 'Proyecto B',
-        	'description' => 'El proyecto A consiste en desarrollar una aplicación Android.'
+        	'description' => 'El proyecto B consiste en desarrollar una aplicación Android.'
         ]);
     }
 }
