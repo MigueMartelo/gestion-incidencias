@@ -49,7 +49,7 @@
                         <a href="/usuario/{{ $user->id }}" class="btn btn-sm btn-primary" title="Editar">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="" class="btn btn-sm btn-danger" title="Eliminar">
+                        <a href="/usuario/{{ $user->id }}/eliminar" class="btn btn-sm btn-danger" title="Eliminar">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </td>
