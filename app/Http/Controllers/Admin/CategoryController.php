@@ -37,4 +37,11 @@ class CategoryController extends Controller
 
         return back()->with('notification', 'La categoría se ha editado correctamente.');
     }
+
+    public function delete($id)
+    {
+        Category::find($id)->delete();
+
+        return back()->with('notification', 'La categoría fue eliminada correctamente.');
+    }
 }

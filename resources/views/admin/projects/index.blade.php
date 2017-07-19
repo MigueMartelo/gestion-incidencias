@@ -48,7 +48,6 @@
                     <td>{{ $project->description }}</td>
                     <td>{{ $project->start ?: 'No se ha indicado' }}</td>
                     <td>
-
                         @if ($project->trashed())
                         <a href="/proyecto/{{ $project->id }}" class="btn btn-sm btn-primary disabled" title="Editar">
                             <span class="glyphicon glyphicon-pencil"></span>

@@ -37,4 +37,11 @@ class LevelController extends Controller
 
         return back()->with('notification', 'El nivel se ha editado correctamente.');
     }
+
+    public function delete($id)
+    {
+        Level::find($id)->delete();
+
+        return back()->with('notification', 'El nivel fue eliminado correctamente.');
+    }
 }

@@ -34,10 +34,12 @@ Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function() {
 	// Category
 	Route::post('/categorias', 'CategoryController@store');
 	Route::post('/categoria/editar', 'CategoryController@update');
+	Route::get('/categoria/{id}/eliminar', 'CategoryController@delete');
 
 	//Level
 	Route::post('/niveles', 'LevelController@store');
 	Route::post('/nivel/editar', 'LevelController@update');
+	Route::get('/nivel/{id}/eliminar', 'LevelController@delete');
 
 	Route::get('/config', 'ConfigController@index');
 });

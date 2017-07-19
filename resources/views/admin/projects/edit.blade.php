@@ -68,7 +68,7 @@
                                 <button type="button" class="btn btn-sm btn-primary" title="Editar" data-category="{{ $category->id }}">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
-                                <a href="" class="btn btn-sm btn-danger" title="Eliminar">
+                                <a href="/categoria/{{ $category->id }}/eliminar" class="btn btn-sm btn-danger" title="Eliminar">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>
                             </td>
@@ -106,7 +106,7 @@
                                 <button class="btn btn-sm btn-primary" title="Editar" data-level="{{ $level->id }}">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
-                                <a href="" class="btn btn-sm btn-danger" title="Eliminar">
+                                <a href="/nivel/{{ $level->id }}/eliminar" class="btn btn-sm btn-danger" title="Eliminar">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>
                             </td>

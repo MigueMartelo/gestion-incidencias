@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Level extends Model
 {
+	Use SoftDeletes;
+
     protected $fillable = ['name', 'project_id'];
 
     public function project()
