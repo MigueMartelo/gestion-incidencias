@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="http://bootswatch.com/flatly/bootstrap.css">
+    <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
 </head>
 <body>
     <div id="app">
@@ -36,6 +36,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                        @if (auth()->check())
                         <form class="navar-form">
                             <div class="form-group">
                                 <select name="" class="form-control">
@@ -43,6 +44,7 @@
                                 </select>
                             </div>
                         </form>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
