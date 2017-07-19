@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Project;
+use App\ProjectUser;
 
 class UserController extends Controller
 {
@@ -48,7 +49,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $projects = Project::all();
-    	return view('admin.users.edit')->with(compact('user', 'projects'));
+
+        $projects_user = ProjectUser::where('user_id', $user->id)->get();
+
+    	return view('admin.users.edit')->with(compact('user', 'projects', 'projects_user'));
     }
 
     public function update($id, Request $request)
