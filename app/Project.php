@@ -24,6 +24,13 @@ class Project extends Model
 		'name', 'description', 'start'
 	];
 
+	// relationships
+	public function users()
+	{
+		return $this->belongsToMany('App\User');
+	}
+
+	// accesors
 	public function categories()
 	{
 		return $this->hasMany('App\Category');

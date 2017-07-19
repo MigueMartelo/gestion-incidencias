@@ -40,7 +40,9 @@
                         <form class="navar-form">
                             <div class="form-group">
                                 <select name="" class="form-control">
-                                    <option value="">Proyecto A</option>
+                                @foreach (auth()->user()->list_of_projects as $project)
+                                    <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </form>

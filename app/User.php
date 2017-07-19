@@ -12,23 +12,28 @@ class User extends Authenticatable
 
     use SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // relationships
+    public function projects()
+    {
+        return $this->belongsToMany('App\Project');
+    }
+
+    // accesors
+    public function getListOfProjectsAttribute()
+    {
+        if ($this->role == 1)
+            return $this->projects;
+
+        return Project::all();
+    }
 
     public function getIsAdminAttribute()
     {
