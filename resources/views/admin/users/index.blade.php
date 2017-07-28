@@ -28,7 +28,7 @@
                 <input type="text" name="password" class="form-control" value="{{ old('password', str_random('8')) }}">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Registrar Incidencia</button>
+                <button class="btn btn-primary">Registrar Usuario</button>
             </div>
         </form>
 

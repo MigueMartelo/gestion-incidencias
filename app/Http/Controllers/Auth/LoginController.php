@@ -7,16 +7,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
     use AuthenticatesUsers;
 
@@ -35,5 +25,19 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated()
+    {
+        $user = auth()->user();
+
+        if($user->is_admin || $user->is_client)
+            return;
+
+        // support
+        if(! $user->selected_project_id) {
+            $user->selected_project_id = $user->projects->first()->id;
+            $user->save();
+        }
     }
 }
