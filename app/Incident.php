@@ -29,4 +29,12 @@ class Incident extends Model
     {
     	return mb_strimwidth($this->title, 0, 20, '...');
     }
+
+    // category_name
+    public function getCategoryNameAttribute()
+    {
+        if ($this->category)
+            return $this->category->name;
+        return 'General';
+    }
 }

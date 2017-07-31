@@ -6,6 +6,7 @@
 
     <div class="panel-body">
 
+		@if (auth()->user()->is_support)
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">Incidencias asignada a mí</h3>
@@ -73,6 +74,7 @@
 				</table>
 			</div>
 		</div>
+		@endif
 
 		<div class="panel panel-success">
 			<div class="panel-heading">
@@ -95,12 +97,14 @@
 						@foreach($incidents_by_me as $incident)
 							<tr>
 								<td>{{ $incident->id }}</td>
-								<td>{{ $incident->category->name }}</td>
+								<td>{{ $incident->category_name }}</td>
 								<td>{{ $incident->severity_full }}</td>
 								<td>{{ $incident->id }}</td>
 								<td>{{ $incident->created_at }}</td>
 								<td>{{ $incident->title_short }}</td>
-								<td>{{ $incident->support_id }}</td>
+								<td>
+									{{ $incident->support_id ?: 'Sin asignar'}}
+								</td>
 							</tr>
 						@endforeach
 					</tbody>

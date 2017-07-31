@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Incident;
+use App\Project;
 
 class IncidentController extends Controller
 {
@@ -30,7 +31,7 @@ class IncidentController extends Controller
         ];
 
         $messages = [
-            'category_id.exists'   => 'La categoría seleccionada no existe.',
+            'category_id.exists'   => 'La categoría seleccionada no existe en nuestra base de datos.',
             'title.required'       => 'Es necesario ingresar un título para la incidencia.',
             'title.min'            => 'El título debe tener al menos 5 caracteres.',
             'description.required' => 'Es necesario ingresar una descripción para la incidencia.',
@@ -44,7 +45,13 @@ class IncidentController extends Controller
         $incident->severity = $request->input('severity');
         $incident->title = $request->input('title');
         $incident->description = $request->input('description');
-        $incident->client_id = auth()->user()->id;
+
+        $user = auth()->user();
+
+        $incident->client_id = $user->id;
+        $incident->project_id = $user->selected_project_id;
+        $incident->level_id = Project::find($user->selected_project_id)->first_level_id;
+
         $incident->save();
 
         return back();
