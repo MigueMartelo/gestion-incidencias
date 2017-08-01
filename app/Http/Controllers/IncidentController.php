@@ -18,13 +18,13 @@ class IncidentController extends Controller
     public function show($id)
     {
         $incident = Incident::findOrFail($id);
-        return view('incidents.show')->with(compact('incident'));
+        return view('incidents/show')->with(compact('incident'));
     }
 
     public function create()
     {
         $categories = Category::where('project_id', 1)->get();
-        return view('inicidents.create')->with(compact('categories'));
+        return view('incidents/create')->with(compact('categories'));
     }
 
     public function store(Request $request)
@@ -62,4 +62,32 @@ class IncidentController extends Controller
 
         return back();
     }
+
+    public function take()
+    {
+
+    }
+
+    public function solve()
+    {
+
+    }
+
+    public function open()
+    {
+
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function nextLevel()
+    {
+
+    }
+
 }
+
+

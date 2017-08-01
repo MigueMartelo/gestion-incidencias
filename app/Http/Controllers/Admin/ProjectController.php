@@ -12,7 +12,7 @@ class ProjectController extends Controller
     public function index()
     {
     	$projects = Project::withTrashed()->get();
-    	return view('admin.projects.index')->with(compact('projects'));
+    	return view('admin/projects/index')->with(compact('projects'));
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class ProjectController extends Controller
     	$project = Project::find($id);
         $categories = $project->categories;
         $levels = $project->levels; // Level::where('project_id', $id)->get();
-    	return view('admin.projects.edit')->with(compact('project', 'categories', 'levels'));
+    	return view('admin/projects/edit')->with(compact('project', 'categories', 'levels'));
     }
 
     public function update(Request $request, $id)
