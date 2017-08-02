@@ -5,6 +5,12 @@
     <div class="panel-heading">Incidencia</div>
 
     <div class="panel-body">
+        @if (session('notification'))
+            <div class="alert alert-success">
+               {{ session('notification') }}
+            </div>
+        @endif
+
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -35,7 +41,7 @@
             <thead>
                 <tr>
                     <th>Asignado a</th>
-                    <th>Visibilidad</th>
+                    <th>Nivel</th>
                     <th>Estado</th>
                     <th>Severidad</th>
                 </tr>
@@ -43,7 +49,7 @@
             <tbody>
                 <tr>
                     <td id="incident_responsible">{{ $incident->support_name ?: 'Sin asignar'}}</td>
-                    <td>Público</td>
+                    <td>{{ $incident->level->name }}</td>
                     <td id="incident_state">{{ $incident->state }}</td>
                     <td id="incident_severity">{{ $incident->severity_full }}</td>
                 </tr>

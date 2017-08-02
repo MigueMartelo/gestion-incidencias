@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Incident;
 use App\Project;
+use App\ProjectUser;
 
 class IncidentController extends Controller
 {
@@ -63,31 +64,105 @@ class IncidentController extends Controller
         return back();
     }
 
-    public function take()
+    public function take($id)
     {
+        $user = auth()->user();
 
+        if (! $user->is_support)
+            return back();
+
+        $incident = Incident::findOrFail($id);
+
+        // There is a relationship between user and project?
+        $project_user = ProjectUser::where('project_id', $incident->project_id)
+                                    ->where('user_id', $user->id)->first();
+
+        if (! $project_user)
+            return back();
+
+        // The leve is the same?
+        if ($project_user->level_id != $incident->level_id)
+            return back();
+
+        $incident->support_id = $user->id;
+        $incident->save();
+
+        return back();
     }
 
-    public function solve()
+    public function solve($id)
     {
+        $incident = Incident::findOrFail($id);
 
+        // Is the user authenticated the author of the incident?
+        if ($incident->client_id != auth()->user()->id)
+            return back();
+
+        $incident->active = 0; // false
+        $incident->save();
+
+        return back();
     }
 
-    public function open()
+    public function open($id)
     {
+        $incident = Incident::findOrFail($id);
 
+         // Is the user authenticated the author of the incident?
+        if ($incident->client_id != auth()->user()->id)
+            return back();
+
+        $incident->active = 1; // true
+        $incident->save();
+
+        return back();
     }
 
-    public function edit()
+    public function edit($id)
     {
-
+        $incident = Incident::findOrFail($id);
     }
 
-    public function nextLevel()
+    public function nextLevel($id)
     {
+        $incident = Incident::findOrFail($id);
+        $level_id = $incident->level_id;
 
+        $project = $incident->project;
+        $levels = $project->levels;
+
+        $next_level_id = $this->getNextLevelId($level_id, $levels);
+
+        if ($next_level_id){
+            $incident->level_id = $next_level_id;
+            $incident->save();
+            return back();
+        }
+
+        return back()->with('notification', 'No es posible derivar porque no hay un siguiente nivel.');
     }
 
+    public function getNextLevelId($level_id, $levels)
+    {
+        if (sizeof($levels) <= 1)
+            return null;
+
+        $position = -1;
+        for ($i=0; $i < sizeof($levels)-1; $i++) {
+            if ($levels[$i]->id = $level_id){
+                $position = $i;
+                break;
+            }
+        }
+
+        if ($position == -1)
+            return null;
+
+        // if ($position == sizeof($levels) -1)
+        //     return null;
+
+        return $levels[$position+1]->id;
+    }
 }
 
 
