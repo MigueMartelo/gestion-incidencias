@@ -9,6 +9,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/seleccionar/proyecto/{id}', 'HomeController@selectProject');
 
+// Incidents
 Route::get('/reportar', 'IncidentController@create');
 Route::post('/reportar', 'IncidentController@store');
 
@@ -21,6 +22,9 @@ Route::get('/incidencia/{id}/atender', 'IncidentController@take');
 Route::get('/incidencia/{id}/resolver', 'IncidentController@solve');
 Route::get('/incidencia/{id}/abrir', 'IncidentController@open');
 Route::get('/incidencia/{id}/derivar', 'IncidentController@nextLevel');
+
+// Messages
+Route::post('/mensajes', 'MessageController@store');
 
 Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function() {
 	// User
